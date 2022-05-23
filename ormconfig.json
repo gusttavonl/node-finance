@@ -1,0 +1,15 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5433,
+  "username": "postgres",
+  "password": "postgres",
+  "database": "dev_finance",
+  "entities": ["./dist/**/*.entity{.ts,.js}"],
+  "migrations": ["./dist/**/*.ts"],
+  "synchronize": true,
+  "logging": true,
+  "cli": {
+    "migrationsDir": "./src/migrations/"
+  }
+}
