@@ -1,8 +1,16 @@
 import faker from 'faker';
+import { User } from './user.entity'
+import { Category } from './category.entity'
 
 export const Account = {
   id: faker.random.uuid(),
-  name: faker.random.words(),
-  email: faker.internet.email(),
-  password: faker.internet.password(),
+  user: User,
+  category: Category,
+  title: faker.random.words(),
+  description: faker.random.words(),
+  type: 'debit',
+  value: faker.random.number(),
+  date: faker.date.recent(),
+  created_at: faker.date.recent(),
+  updated_at: faker.date.recent(),
 };

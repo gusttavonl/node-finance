@@ -1,7 +1,8 @@
-import { Field, HideField, ID, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Category } from './category.entity';
 import Dates from './dates.entity';
-import { hasPassowrdTransform } from '@/shared/crypto';
+import { User } from './user.entity';
 
 @ObjectType()
 @Entity()
@@ -10,15 +11,26 @@ export class Account extends Dates {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @Column()
-  name: string
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+  user: User
+
+  @ManyToOne(() => Category)
+  @JoinColumn({ name: 'category_id', referencedColumnName: 'id' })
+  category: Category
 
   @Column()
-  email: string
+  title: string
 
-  @Column({
-    transformer: hasPassowrdTransform
-  })
-  @HideField()
-  password: string
+  @Column()
+  description: string
+
+  @Column()
+  type: string
+
+  @Column()
+  value: number
+
+  @Column()
+  date: Date
 }
